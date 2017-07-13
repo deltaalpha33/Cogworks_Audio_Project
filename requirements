@@ -1,0 +1,26 @@
+# Cogworks_Audio_Project
+
+Database:
+
+-add song
+-save
+-load
+-switch
+
+Audio Input
+
+-files
+-microphone
+-numpy array
+
+
+Fingerprints
+
+-generate features
+-copare best match
+-sufficient match
+
+
+Currently Working On:
+(name: function)
+
