@@ -3,8 +3,10 @@ class Database:
     """Contains all songs in a Python dictionary, whose key is the song name
     and value is the author.
     """
+    global database
 
     def __init__(self):
+        # global database = None
         database = None
         pass
 
