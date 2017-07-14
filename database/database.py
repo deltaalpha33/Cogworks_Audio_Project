@@ -18,17 +18,6 @@ class Database:
         """
         list_songs = None
         dict_songs = None # dictionary of songs to be added to existing database
-<<<<<<< HEAD
-        
-        for i in range(len(songs)):
-            list_songs = parse_fileName(s for s in songs)
-
-        for i in range(len(list_songs) - 1):
-            dict_songs[ list_songs[i] ] = list_songs[i + 1]
-
-        database.update(dict_songs)
-=======
->>>>>>> 1ad52ef9254970b2e0073026dadd9184a3035c7c
         
         for i in range(len(songs)):
             list_songs = author_title_from_filename(s for s in songs)
@@ -40,11 +29,7 @@ class Database:
         
         pass
 
-<<<<<<< HEAD
-    def get_song(title):
-=======
     def get_song(self, title):
->>>>>>> 1ad52ef9254970b2e0073026dadd9184a3035c7c
         """Given song title, returns the Song object
 
         Parameters
@@ -58,13 +43,7 @@ class Database:
         """
         song = None
 
-<<<<<<< HEAD
         if find(title):
-=======
-        song = None
-
-        if find(title) == true:
->>>>>>> 1ad52ef9254970b2e0073026dadd9184a3035c7c
             song = database[title]
         else:
             raise Exception("Song not in database.")
@@ -72,7 +51,7 @@ class Database:
         return song
 
     # TODO: make static?
-    def switch(self, new_database):
+    def switch(new_database):
         """Switches to new_database.
 
         Parameters
@@ -83,13 +62,15 @@ class Database:
 
     def remove(self, title):
         """Given song title, remove it from the database.
-        @preconditions(database.contains(song)) # TODO: proper format
         
         Parameters
         ----------
         title: String of song name to be removed
         """
-        del self[song]
+        if find(title):
+            del database[title]
+        else:
+            raise Exception("Song not originally in database.")
         pass
     
     def find(self, title):
