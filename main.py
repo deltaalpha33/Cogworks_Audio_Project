@@ -21,11 +21,11 @@ for path in fileSet:
 #get mic input
 mic_input = Audio.read_mic(seconds=5)
 #Convert to spectrogram and find peaks
-features = DFT.get_features(mic_input)
+differences = DFT.get_features(mic_input)
 
 
 
 #Look for matches
-match = DFT.best_match(features)
+match = DFT.best_match(differences)
 	#Output best match TODO: format data better
 print(database.get_song(match))
