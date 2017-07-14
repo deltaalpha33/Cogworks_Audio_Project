@@ -1,5 +1,6 @@
 #import numpy
 import numpy as np
+import numpy.ma as ma
 
 #import scipy functions for peak finding
 
@@ -24,26 +25,9 @@ def filterlowamplitudes(C, threshold):
     m[u] = False
     m[ge] = True
     return m
-    
-def smooth_transform(y, max_coefs):
-""" Find Most Significant Fourier Coefficients
-        
-        Parameters
-        ----------
-        y : numpy.array[float]
-            N evenly-spaced samples
-        max_coefs : int
-        	maximun number of Fourier Coefficients to keep
-
-        
-        Returns
-        -------
-        numpy.array[complex]
-            N//2 + 1 - max_coeefs Fourier coefficients"""
-    return np.fft.rfft(y)[max_coefs]
 
 def local_peaks(data):
-""" Find local peaks in a 2D array of data.
+    """ Find local peaks in a 2D array of data.
 
     Parameters
     ----------
@@ -54,34 +38,101 @@ def local_peaks(data):
     Binary indicator, of the same shape as `data`. The value of
     True indicates a local peak. """
 	ffp = generate_binary_structure(rank=2 , connectivity=2)
-    acceptable_values = data > 1
+    ##acceptable_values = data > 1
     peaks = data == (maximum_filter(data, footprint=fp))
-    acceptable_peaks = np.logical_and(peaks, acceptable_values)
-    return acceptable_peaks
+    ##acceptable_peaks = np.logical_and(peaks, acceptable_values)
+    ##return acceptable_peaks
+    return peaks
 
-def acceptable_values(data):
-"""finds acceptable C values in the forier transform
-	
-	Parameters
-	----------
-	data : numpy.ndarray
-
-	Returns
-	-------
-	Binary indicator, of the same shape as `data`. 
-	The value of True indicates an acceptable Fourier Constant"""
-	pass
-
-def compare_peaks(input1, input2):
-	""" Score Difference between  to sets of peaks represented  in 2D arrays of data.
+def pair_frequencies(data, peaks , look_ahead = 15):
+    """ Calculate Differences between  to sets of peaks represented  in 2D arrays of data.
 
     Parameters
     ----------
-    input1 : numpy.ndarray
-    input2 : numpy.ndarray
+    data : numpy.ndarray
+    peaks : numpy.ndarray 
+        mask of peaks
+    look_ahead : int
+        how many other points of data to consider
+
     Returns
     -------
     Binary indicator, of the same shape as `data`. The value of
     True indicates a local peak. """
 
-    pass
+    masked_data = ma.masked_array(data,  mask=peaks)
+
+    time_array = np.hsplit(x, x.shape[0]) #list of numpy arrays
+    
+    analyzed_freq = list()
+    for current_time in range(len(time_array) - look_ahead): #dont compare last element(s)
+        current_frequencies = time_array[current_time]
+        for frequency1 in current_frequencies:
+            
+            for compare_time in range(look_ahead):
+                compare_frequencies = time_array[compare_time]
+                for frequency2 in compare_frequencies:
+                    delta_t = compare_time - current_time
+                    analyzed_freq.append((frequency1, frequency2, delta_t))
+    return analyzed_freq
+
+
+class Song:
+    def __init__(self, audio_data):
+        self.author = 'unknown'
+        self.title = 'unknown'
+        self.frequencyDeltas = []
+    def __init__(self,frequencyDeltas, author,title):
+        self.author = author
+        self.title = title
+        self.frequencyDeltas = frequencyDeltas
+
+    def get_name(self):
+        return self.author + " - " + self.title
+    def author_title_from_filename(self,filename):
+        """sets title and author from a filename
+
+        Parameters
+        ----------
+        filename: the string name of the file. (not the path)
+
+        Returns
+        -------
+        Nothing
+        """
+        filename = filename.replace('.mp3','')
+        filename = filename.replace('_',' ')
+        parts = filename.split(' - ')
+        self.author = parts[0]
+        self.title = parts[1]
+
+    def isSubset(origin_data, compare_data):
+    """ Find if the two pieces of data are correlated
+
+    Parameters
+    ----------
+    origin_data : Song
+    peaks : list
+        mask of peaks
+    look_ahead : int
+        how many other points of data to consider
+
+    Returns
+    -------
+    Binary indicator, of the same shape as `data`. The value of
+    True indicates a local peak. """
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
