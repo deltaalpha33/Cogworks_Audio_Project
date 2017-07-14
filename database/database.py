@@ -11,7 +11,7 @@ class Database:
         pass
 
 
-    def add_songs(songs):
+    def add_songs(self, songs):
         """Add (a) song(s) to the database.
 
         Parameters
@@ -22,7 +22,8 @@ class Database:
         dict_songs = None # dictionary of songs to be added to existing database
         
         for i in range(len(songs)):
-            list_songs = parse_fileName(s for s in songs)
+           #  list_songs = parse_fileName(s for s in songs)
+           # TODO: implement with song class functionality
 
         for i in range(len(list_songs) - 1):
             dict_songs[ list_songs[i] ] = list_songs[i + 1]
@@ -31,23 +32,7 @@ class Database:
         
         pass
 
-
-    def parse_fileName(song):
-        """Parse a song filename to return an array of the title and author.
-    
-        Parameters
-        ----------
-        song: filename, in mp3 format, to be parsed
-
-
-        Returns
-        -------
-        info: array of two elements: song title, and author
-        """
-        # TODO: implement
-        pass
-
-    def get_song(title):
+    def get_song(self, title):
         """Given song title, returns the title and author or asks for more information if not found
 
         Parameters
@@ -62,14 +47,15 @@ class Database:
 
         song = None
 
-        if find(title):
+        if find(title) == true:
             song = [ title, database[title] ]
         else:
             raise Exception("Song not in database.")
 
         return song
 
-    def switch(new_database):
+    # TODO: make static?
+    def switch(self, new_database):
         """Switches to new_database.
 
         Parameters
@@ -78,7 +64,7 @@ class Database:
         """
         pass
 
-    def remove(title):
+    def remove(self, title):
         """Given song title, remove it from the database.
         @preconditions(database.contains(song)) # TODO: proper format
         
@@ -86,10 +72,10 @@ class Database:
         ----------
         title: String of song name to be removed
         """
-        del database[song]
+        del self[song]
         pass
     
-    def find(title):
+    def find(self, title):
 
         """
         Given incomplete song information, searches dictionary for match. 
@@ -114,7 +100,7 @@ class Database:
 
         return found
 
-    def list():
+    def list(self):
 
         """Lists all items in database.
 
