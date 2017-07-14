@@ -3,7 +3,7 @@
 Class Database:
     
     """Contains all songs in a Python dictionary, whose key is the song name
-    and value is the author. Mapped to the file name.
+    and value is the author.
     """
     private database # dictionary
 
