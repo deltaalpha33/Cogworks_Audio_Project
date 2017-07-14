@@ -1,4 +1,4 @@
 # Cogworks_Audio_Project
 
 
-This is the readme.
+##Welcome to the Cogworks Audio Project by Esoteric
