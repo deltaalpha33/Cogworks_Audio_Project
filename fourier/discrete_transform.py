@@ -25,23 +25,6 @@ def filterlowamplitudes(C, threshold):
     m[u] = False
     m[ge] = True
     return m
-    
-def smooth_transform(y, max_coefs):
-""" Find Most Significant Fourier Coefficients
-        
-        Parameters
-        ----------
-        y : numpy.array[float]
-            N evenly-spaced samples
-        max_coefs : int
-        	maximun number of Fourier Coefficients to keep
-
-        
-        Returns
-        -------
-        numpy.array[complex]
-            N//2 + 1 - max_coeefs Fourier coefficients"""
-    return np.fft.rfft(y)[max_coefs]
 
 def local_peaks(data):
     """ Find local peaks in a 2D array of data.
@@ -61,7 +44,7 @@ def local_peaks(data):
     ##return acceptable_peaks
     return peaks
 
-def pair frequencies(data, peaks , look_ahead = 15):
+def pair_frequencies(data, peaks , look_ahead = 15):
     """ Calculate Differences between  to sets of peaks represented  in 2D arrays of data.
 
     Parameters
@@ -82,7 +65,7 @@ def pair frequencies(data, peaks , look_ahead = 15):
     time_array = np.hsplit(x, x.shape[0]) #list of numpy arrays
     
     analyzed_freq = list()
-    for current_time in range(len(time_array) - look_ahead): #dont compare last element
+    for current_time in range(len(time_array) - look_ahead): #dont compare last element(s)
         current_frequencies = time_array[current_time]
         for frequency1 in current_frequencies:
             
@@ -92,6 +75,52 @@ def pair frequencies(data, peaks , look_ahead = 15):
                     delta_t = compare_time - current_time
                     analyzed_freq.append((frequency1, frequency2, delta_t))
     return analyzed_freq
+
+
+class Song:
+    def __init__(self, audio_data):
+        self.author = 'unknown'
+        self.title = 'unknown'
+        self.frequencyDeltas = []
+    def __init__(self,frequencyDeltas, author,title):
+        self.author = author
+        self.title = title
+        self.frequencyDeltas = frequencyDeltas
+
+    def get_name(self):
+        return self.author + " - " + self.title
+    def author_title_from_filename(self,filename):
+        """sets title and author from a filename
+
+        Parameters
+        ----------
+        filename: the string name of the file. (not the path)
+
+        Returns
+        -------
+        Nothing
+        """
+        filename = filename.replace('.mp3','')
+        filename = filename.replace('_',' ')
+        parts = filename.split(' - ')
+        self.author = parts[0]
+        self.title = parts[1]
+
+    def isSubset(origin_data, compare_data):
+    """ Find if the two pieces of data are correlated
+
+    Parameters
+    ----------
+    origin_data : Song
+    peaks : list
+        mask of peaks
+    look_ahead : int
+        how many other points of data to consider
+
+    Returns
+    -------
+    Binary indicator, of the same shape as `data`. The value of
+    True indicates a local peak. """
             
             
 
