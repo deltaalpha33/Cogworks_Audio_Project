@@ -8,6 +8,24 @@ from scipy.ndimage.filters import maximum_filter
 from scipy.ndimage.morphology import generate_binary_structure, binary_erosion 
 from scipy.ndimage.morphology import iterate_structure
 
+def filterlowamplitudes(C, threshold):
+    """ Read
+
+        Parameters
+        ----------
+        C: 2D numpy array of amplitudes from FFT
+            Time on x, Frequency on y
+        threshold: Threshold to determine high or low
+        Returns
+        -------
+        2D boolean mask, True is high, False is low """
+    m = np.copy(C)
+    u = m < threshold
+    ge = m > threshold
+    m[u] = False
+    m[ge] = True
+    return m
+    
 def smooth_transform(y, max_coefs):
 """ Find Most Significant Fourier Coefficients
         

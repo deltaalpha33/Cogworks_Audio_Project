@@ -1,18 +1,15 @@
-# from preconditions import preconditions
-
-Class Database:
+class Database:
     
     """Contains all songs in a Python dictionary, whose key is the song name
     and value is the author.
     """
-    private database # dictionary
 
-    def __init__(self, dict):
-        database = dict
+    def __init__(self):
+        database = None
         pass
 
 
-    def add_songs(songs):
+    def add_songs(self, songs):
         """Add (a) song(s) to the database.
 
         Parameters
@@ -23,7 +20,7 @@ Class Database:
         dict_songs = None # dictionary of songs to be added to existing database
         
         for i in range(len(songs)):
-            list_songs = parse_fileName(s for s in songs)
+            list_songs = author_title_from_filename(s for s in songs)
 
         for i in range(len(list_songs) - 1):
             dict_songs[ list_songs[i] ] = list_songs[i + 1]
@@ -32,24 +29,8 @@ Class Database:
         
         pass
 
-
-    def parse_fileName(song):
-        """Parse a song filename to return an array of the title and author.
-    
-        Parameters
-        ----------
-        song: filename, in mp3 format, to be parsed
-
-
-        Returns
-        -------
-        info: array of two elements: song title, and author
-        """
-        # TODO: implement
-        pass
-
-    def get_song(title):
-        """Given song title, returns the title and author or asks for more information if not found
+    def get_song(self, title):
+        """Given song title, returns the Song object
 
         Parameters
         ----------
@@ -58,18 +39,18 @@ Class Database:
 
         Returns
         -------
-        song: list of String title and author
+        song: desired Song object
         """
-
         song = None
 
         if find(title):
-            song = [ title, database[title] ]
+            song = database[title]
         else:
             raise Exception("Song not in database.")
 
         return song
 
+    # TODO: make static?
     def switch(new_database):
         """Switches to new_database.
 
@@ -79,18 +60,20 @@ Class Database:
         """
         pass
 
-    def remove(title):
+    def remove(self, title):
         """Given song title, remove it from the database.
-        @preconditions(database.contains(song)) # TODO: proper format
         
         Parameters
         ----------
         title: String of song name to be removed
         """
-        del database[song]
+        if find(title):
+            del database[title]
+        else:
+            raise Exception("Song not originally in database.")
         pass
     
-    def find(title):
+    def find(self, title):
 
         """
         Given incomplete song information, searches dictionary for match. 
@@ -115,7 +98,7 @@ Class Database:
 
         return found
 
-    def list():
+    def list(self):
 
         """Lists all items in database.
 
