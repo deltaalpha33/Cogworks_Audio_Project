@@ -17,9 +17,18 @@ Class Database:
 
         Parameters
         ----------
-        songs: dictionary of key title and value author to be added
+        songs: array of songs to be added, still in mp3 file form
         """
-        database.update(songs)
+        list_songs = None
+        dict_songs = None # dictionary of songs to be added to existing database
+        
+        for i in range(len(songs)):
+            list_songs = parse_fileName(s for s in songs)
+
+        for i in range(len(list_songs) - 1):
+            dict_songs[ list_songs[i] ] = list_songs[i + 1]
+
+        database.update(dict_songs)
         
         pass
 
@@ -39,8 +48,8 @@ Class Database:
         # TODO: implement
         pass
 
-    def load_song(title):
-        """Given song title, returns the song or asks for more information.
+    def get_song(title):
+        """Given song title, returns the title and author or asks for more information if not found
 
         Parameters
         ----------
@@ -49,14 +58,17 @@ Class Database:
 
         Returns
         -------
-        song: filename retrieved from dictionary
+        song: list of String title and author
         """
 
+        song = None
+
         if find(title):
-            pass # TODO: implement
+            song = [ title, database[title] ]
         else:
             raise Exception("Song not in database.")
-        pass
+
+        return song
 
     def switch(new_database):
         """Switches to new_database.
