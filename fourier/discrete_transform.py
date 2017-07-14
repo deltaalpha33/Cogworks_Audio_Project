@@ -43,21 +43,7 @@ def local_peaks(data):
     ##return acceptable_peaks
     return peaks
 
-def acceptable_values(data , look):
-    """finds acceptable C values in the forier transform
-	
-	Parameters
-	----------
-	data : numpy.ndarray
-
-
-	Returns
-	-------
-	Binary indicator, of the same shape as `data`. 
-	The value of True indicates an acceptable Fourier Constant"""
-	pass
-
-def compare_peaks(data, peaks , look_ahead = 15):
+def pair frequencies(data, peaks , look_ahead = 15):
     """ Calculate Differences between  to sets of peaks represented  in 2D arrays of data.
 
     Parameters
