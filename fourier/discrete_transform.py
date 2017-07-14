@@ -1,12 +1,33 @@
 #import numpy
 import numpy as np
 import numpy.ma as ma
+import matplotlib.mlab as mlab
 
 #import scipy functions for peak finding
 
 from scipy.ndimage.filters import maximum_filter
 from scipy.ndimage.morphology import generate_binary_structure, binary_erosion 
 from scipy.ndimage.morphology import iterate_structure
+
+
+
+def spectrogram(samples):
+    """create a spectrogram from samples
+
+    Parameters
+    ----------
+    samples: the data to build the spectrogram from
+
+
+    Returns
+    -------
+    S: the spectrogram as a numpy array Rows are times, columns are frequencies
+    frecs: the frequencies
+    times: the times"""
+    S, freqs, times = mlab.specgram(samples, NFFT=4096, Fs=44100,
+                                                    window=mlab.window_hanning,
+                                                    noverlap=(4096 // 2))
+    return S, freqs, times
 
 def filterlowamplitudes(C, threshold):
     """ Read
