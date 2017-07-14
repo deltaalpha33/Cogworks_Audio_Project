@@ -77,6 +77,7 @@ def pair_frequencies(data, peaks , look_ahead = 15):
     return analyzed_freq
 
 
+
 class Song:
     def __init__(self, audio_data):
         self.author = 'unknown'
