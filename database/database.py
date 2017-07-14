@@ -31,8 +31,7 @@ class Database:
 >>>>>>> 1ad52ef9254970b2e0073026dadd9184a3035c7c
         
         for i in range(len(songs)):
-           #  list_songs = parse_fileName(s for s in songs)
-           # TODO: implement with song class functionality
+            list_songs = author_title_from_filename(s for s in songs)
 
         for i in range(len(list_songs) - 1):
             dict_songs[ list_songs[i] ] = list_songs[i + 1]
