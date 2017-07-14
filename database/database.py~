@@ -1,0 +1,53 @@
+
+# python dictionary, whose key is the song name, and author is the title
+# mapped to the file name
+database d
+
+
+def add_song(song):
+    """Add a song to the database.
+
+    Keyword arguments:
+    song --  array of string title and author, already parsed, to be added
+    """
+    pass
+
+
+def parse_title(song):
+    """Parse a song filename to return an array of the title and author.
+    
+    Keyword arguments:
+    song -- filename, in mp3 format, to be parsed
+
+    Returns:
+    info -- array of two elements: song title, and author
+    """
+
+    pass
+
+def load_song(info):
+    """Given either the song title or author, plays the song or asks for more
+    information.
+
+    Keyword arguments:
+    info -- array of size 1 or 2 containing information about the song
+    """
+
+    pass
+
+def switch(new_database):
+    """Switches to new_database.
+
+    Kewyord arguments:
+    new_database -- desired database to which to switch.
+    """
+    pass
+
+def remove(song):
+    pass
+
+def find(song):
+    pass
+
+def list():
+    pass
