@@ -8,7 +8,7 @@ from scipy.ndimage.morphology import generate_binary_structure, binary_erosion
 from scipy.ndimage.morphology import iterate_structure
 
 def smooth_transform(y, max_coefs):
-    """ Find Most Significant Fourier Coefficients
+""" Find Most Significant Fourier Coefficients
         
         Parameters
         ----------
