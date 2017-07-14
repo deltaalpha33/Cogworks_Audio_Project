@@ -1,0 +1,9 @@
+setup.py
+microphone/__init__.py
+microphone/configure_input.py
+microphone/context_managers.py
+microphone/microphone.py
+microphone.egg-info/PKG-INFO
+microphone.egg-info/SOURCES.txt
+microphone.egg-info/dependency_links.txt
+microphone.egg-info/top_level.txt

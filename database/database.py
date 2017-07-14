@@ -1,18 +1,15 @@
-# from preconditions import preconditions
-
-Class Database:
+class Database:
     
     """Contains all songs in a Python dictionary, whose key is the song name
     and value is the author.
     """
-    private database # dictionary
 
-    def __init__(self, dict):
-        database = dict
+    def __init__(self):
+        database = None
         pass
 
 
-    def add_songs(songs):
+    def add_songs(self, songs):
         """Add (a) song(s) to the database.
 
         Parameters
@@ -21,6 +18,7 @@ Class Database:
         """
         list_songs = None
         dict_songs = None # dictionary of songs to be added to existing database
+<<<<<<< HEAD
         
         for i in range(len(songs)):
             list_songs = parse_fileName(s for s in songs)
@@ -29,27 +27,26 @@ Class Database:
             dict_songs[ list_songs[i] ] = list_songs[i + 1]
 
         database.update(dict_songs)
+=======
+>>>>>>> 1ad52ef9254970b2e0073026dadd9184a3035c7c
+        
+        for i in range(len(songs)):
+           #  list_songs = parse_fileName(s for s in songs)
+           # TODO: implement with song class functionality
+
+        for i in range(len(list_songs) - 1):
+            dict_songs[ list_songs[i] ] = list_songs[i + 1]
+
+        database.update(dict_songs)
         
         pass
 
-
-    def parse_fileName(song):
-        """Parse a song filename to return an array of the title and author.
-    
-        Parameters
-        ----------
-        song: filename, in mp3 format, to be parsed
-
-
-        Returns
-        -------
-        info: array of two elements: song title, and author
-        """
-        # TODO: implement
-        pass
-
+<<<<<<< HEAD
     def get_song(title):
-        """Given song title, returns the title and author or asks for more information if not found
+=======
+    def get_song(self, title):
+>>>>>>> 1ad52ef9254970b2e0073026dadd9184a3035c7c
+        """Given song title, returns the Song object
 
         Parameters
         ----------
@@ -58,17 +55,25 @@ Class Database:
 
         Returns
         -------
-        song: list of String title and author
+        song: desired Song object
         """
         song = None
 
+<<<<<<< HEAD
         if find(title):
-            song = [ title, database[title] ]
+=======
+        song = None
+
+        if find(title) == true:
+>>>>>>> 1ad52ef9254970b2e0073026dadd9184a3035c7c
+            song = database[title]
         else:
             raise Exception("Song not in database.")
-        pass
 
-    def switch(new_database):
+        return song
+
+    # TODO: make static?
+    def switch(self, new_database):
         """Switches to new_database.
 
         Parameters
@@ -77,7 +82,7 @@ Class Database:
         """
         pass
 
-    def remove(title):
+    def remove(self, title):
         """Given song title, remove it from the database.
         @preconditions(database.contains(song)) # TODO: proper format
         
@@ -85,10 +90,10 @@ Class Database:
         ----------
         title: String of song name to be removed
         """
-        del database[song]
+        del self[song]
         pass
     
-    def find(title):
+    def find(self, title):
 
         """
         Given incomplete song information, searches dictionary for match. 
@@ -113,7 +118,7 @@ Class Database:
 
         return found
 
-    def list():
+    def list(self):
 
         """Lists all items in database.
 
