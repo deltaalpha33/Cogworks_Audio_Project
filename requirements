@@ -1,11 +1,13 @@
 # Cogworks_Audio_Project
 
-Database:
+Database
 
 -add song
 -save
 -load
 -switch
+-remove
+-list
 
 Audio Input
 
@@ -17,10 +19,13 @@ Audio Input
 Fingerprints
 
 -generate features
--copare best match
+-compare
+-best match
 -sufficient match
+-no match
 
 
 Currently Working On:
 (name: function)
 
+Dash: Audio 
