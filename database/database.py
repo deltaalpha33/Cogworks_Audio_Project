@@ -1,6 +1,6 @@
 # from preconditions import preconditions
 
-Class Database:
+Class Database(object):
     
     """Contains all songs in a Python dictionary, whose key is the song name
     and value is the author.
