@@ -1,15 +1,14 @@
 class Database:
     
-    """Contains all songs in a Python dictionary, whose key is the song name
-    and value is the author.
+    """Contains all songs in a Python dictionary, whose key is the song ID
+    and value is the corresponding Song object.
     """
-    global database
+    # global database
 
     def __init__(self):
         # global database = None
-        database = None
+        self.database = None
         pass
-
 
     def add_songs(self, songs):
         """Add (a) song(s) to the database.
@@ -27,7 +26,7 @@ class Database:
         for i in range(len(list_songs) - 1):
             dict_songs[ list_songs[i] ] = list_songs[i + 1]
 
-        database.update(dict_songs)
+        self.database.update(dict_songs)
         
         pass
 
@@ -45,8 +44,8 @@ class Database:
         """
         song = None
 
-        if find(title):
-            song = database[title]
+        if self.find(title):
+            song = self.database[title]
         else:
             raise Exception("Song not in database.")
 
@@ -69,8 +68,8 @@ class Database:
         ----------
         title: String of song name to be removed
         """
-        if find(title):
-            del database[title]
+        if self.find(title):
+            del self.database[title]
         else:
             raise Exception("Song not originally in database.")
         pass
@@ -95,18 +94,8 @@ class Database:
             raise Exception("Unspecified song information")
         else:
             
-            if database.has_key(title): # song is a title in database
+            if self.database.has_key(title): # song is a title in database
                 found = True
 
-        return found
-
-    def list(self):
-
-        """Lists all items in database.
-
-        Returns
-        -------
-        items: list of (key, value) tuple pairs for each element in database.
-        """
-        items = database.items()
+        return founddatabase.items()
         return items
