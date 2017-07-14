@@ -1,14 +1,13 @@
 # from preconditions import preconditions
 
-Class Database(object):
+class Database:
     
     """Contains all songs in a Python dictionary, whose key is the song name
     and value is the author.
     """
-    private database # dictionary
 
-    def __init__(self, dict):
-        database = dict
+    def __init__(self):
+        database = None
         pass
 
 
