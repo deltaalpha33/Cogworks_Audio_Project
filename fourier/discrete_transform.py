@@ -53,7 +53,7 @@ def acceptable_values(data):
 	Binary indicator, of the same shape as `data`. 
 	The value of True indicates an acceptable Fourier Constant"""
 	pass
-	
+
 def compare_peaks(input1, input2):
 	""" Score Difference between  to sets of peaks represented  in 2D arrays of data.
 
@@ -65,3 +65,5 @@ def compare_peaks(input1, input2):
     -------
     Binary indicator, of the same shape as `data`. The value of
     True indicates a local peak. """
+
+    pass
